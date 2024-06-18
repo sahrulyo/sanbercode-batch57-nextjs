@@ -5,14 +5,13 @@
 import Layout from "@/layout ";
 
 
-
-
 export default function Home({ children }) {
  return (
   <div>
  
 <Layout metaTitle="Home">
     <p1>Home</p1>
+
 </Layout>
   </div>
  );

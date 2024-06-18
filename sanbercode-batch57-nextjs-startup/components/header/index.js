@@ -1,4 +1,17 @@
 import styles from './styles.module.css'
+import Link from 'next/link'
 export default function Header() {
-    return <div className={styles.header}>Header = style menggunakan module css</div>
-    }
+    return (
+        <>
+    <div className={styles.header}>Header = style menggunakan module css</div>
+    <ul>
+    <li >
+    <Link href="/">Home |</Link>
+      <Link href="/profile">Profile | </Link>
+      <Link href="/users">User |</Link>
+      <Link href="/users/detail">User detail |</Link>
+    </li>
+  </ul>
+  </>
+    )
+    } 
