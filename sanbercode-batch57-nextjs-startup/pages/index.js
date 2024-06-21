@@ -2,10 +2,13 @@
 // import Header from "@/components/header ";
 // import Footer from "@/components/footer ";
 // import Content from "@/components/contents ";
-import Layout from "@/layout ";
+//import Layout from "@/layout ";
 import { useEffect } from "react";
+import HomePage from "./HomePage";
+import Image from 'next/image';
+import dynamic from "next/dynamic";
 
-
+const LayoutComponent = dynamic (() => import("/Layout"));
 export default function Home({ children }) {
   useEffect (() => {
     fetch("/api/hello")
@@ -17,10 +20,20 @@ export default function Home({ children }) {
  return (
   <div>
  
-<Layout metaTitle="Home">
+<LayoutComponent metaTitle="Home">
     <p1>Home</p1>
+    <HomePage/>
 
-</Layout>
+    {/* cara import pertama */}
+    <img src="/next.svg"
+      style={{width: 400, height:400}}
+      alt="next img"
+      />
+
+      {/* cara import kedua */}
+      <Image src="/next.svg" width={400} height= {400} alt="next img"/>
+
+</LayoutComponent>
   </div>
  );
 }
