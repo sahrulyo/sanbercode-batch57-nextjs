@@ -10,12 +10,12 @@ import dynamic from "next/dynamic";
 
 const LayoutComponent = dynamic (() => import("/Layout"));
 export default function Home({ children }) {
-  useEffect (() => {
-    fetch("/api/hello")
-    .then(res => res.json())
-    .then((res) =>console.log ("respone =>" , res))
-    .catch((err) =>console.log("error =>", err));
-    }, [])
+  // useEffect (() => {
+  //   fetch("/api/hello")
+  //   .then(res => res.json())
+  //   .then((res) =>console.log ("respone =>" , res))
+  //   .catch((err) =>console.log("error =>", err));
+  //   }, [])
     
  return (
   <div>
@@ -26,12 +26,12 @@ export default function Home({ children }) {
 
     {/* cara import pertama */}
     <img src="/next.svg"
-      style={{width: 400, height:400}}
+      style={{width: 150, height:150}}
       alt="next img"
       />
 
       {/* cara import kedua */}
-      <Image src="/next.svg" width={400} height= {400} alt="next img"/>
+      <Image src="/next.svg" width={150} height= {150} alt="next img"/>
 
 </LayoutComponent>
   </div>

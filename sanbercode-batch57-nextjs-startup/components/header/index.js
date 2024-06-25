@@ -10,6 +10,8 @@ export default function Header() {
       <Link href="/profile">Profile | </Link>
       <Link href="/users">User |</Link>
       <Link href="/users/detail">User detail |</Link>
+      <Link href="/notes">Notes|</Link>
+      <Link href="/notes2">Notes2|</Link>
     </li>
   </ul>
   </>
