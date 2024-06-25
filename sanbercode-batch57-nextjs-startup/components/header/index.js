@@ -13,6 +13,7 @@ export default function Header() {
       <Link href="/notes">Notes|</Link>
       <Link href="/notes2">Notes2|</Link>
       <Link href="/posts">Post|</Link>
+      <Link href="/note">Note CRUD|</Link>
     </li>
   </ul>
   </>
