@@ -32,7 +32,7 @@ export default function Notes() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`https://service.pace-unv.cloud/api/notes/${id}`, {
+      await fetch(`https://service.pace-unv.cloud/api/notes/delete/${id}`, {
         method: "DELETE",
       });
       setNotes((prevNotes) => ({

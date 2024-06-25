@@ -17,9 +17,15 @@ export default function EditNotes() {
     if (id) {
       async function fetchNote() {
         try {
+          console.log(`Fetching note with ID: ${id}`);
           const res = await fetch(`https://service.pace-unv.cloud/api/notes/${id}`);
           const noteData = await res.json();
-          setNote(noteData.data);  
+          if (noteData?.data) {
+            setNote(noteData.data);  // Set the note data to state
+            console.log(`Note data fetched: `, noteData.data);
+          } else {
+            console.error("Failed to fetch the note data");
+          }
         } catch (error) {
           console.error("Failed to fetch the note:", error);
         }
@@ -30,8 +36,9 @@ export default function EditNotes() {
 
   const handleSubmit = async () => {
     try {
+      console.log(`Updating note with ID: ${id}`);
       const response = await fetch(
-        `https://service.pace-unv.cloud/api/notes/{note_id}`,
+        `https://service.pace-unv.cloud/api/notes/update/${id}`,  // Correct update URL
         {
           method: "PUT",
           headers: {
@@ -41,6 +48,7 @@ export default function EditNotes() {
         }
       );
       const result = await response.json();
+      console.log(`Update response: `, result);
       if (result?.success) {
         router.push("/note");
       } else {
