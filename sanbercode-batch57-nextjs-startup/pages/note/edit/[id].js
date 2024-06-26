@@ -40,11 +40,11 @@ export default function EditNotes() {
       const response = await fetch(
         `https://service.pace-unv.cloud/api/notes/update/${id}`,  // Correct update URL
         {
-          method: "PUT",
+          method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(note),
+          body: JSON.stringify({ title: note?.title, description: note?.description }),
         }
       );
       const result = await response.json();
