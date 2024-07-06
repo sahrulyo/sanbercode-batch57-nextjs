@@ -4,6 +4,8 @@ import { useQueries } from '@/hooks/useQueries ';
 import Cookies from 'js-cookie';
 import { useMutation } from '@/hooks/useMutation ';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import { UserContext } from '@/context/userContext ';
 import {
   Menu,
   MenuButton,
@@ -13,15 +15,17 @@ import {
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
+
 export default function Header() {
+  const userData = useContext (UserContext);
   const router = useRouter ();
   const { mutate} = useMutation();
-  const {data} = useQueries ({
-    prefixUrl: 'https://service.pace-unv.cloud/api/user/me',
-    headers: {
-      Authorization: `Bearer ${Cookies.get("token")}`
-    }
-  });
+  // const {data} = useQueries ({
+  //   prefixUrl: 'https://service.pace-unv.cloud/api/user/me',
+  //   headers: {
+  //     Authorization: `Bearer ${Cookies.get("token")}`
+  //   }
+  // });
 
   const HandleLogout = async () => {
     const response = await mutate ({
@@ -38,8 +42,6 @@ export default function Header() {
         router.push("/login")
       }
 
-    
-    // Cookies.remove("token");
   };
     return (
         <>
@@ -60,7 +62,7 @@ export default function Header() {
     <li>
     <Menu>
   <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-    {data?.data?.name || "user"}
+    {userData?.email}
   </MenuButton>
   <MenuList>
     <MenuItem onClick={HandleLogout}>Logout</MenuItem>
