@@ -11,6 +11,7 @@ import {
   Heading,
   Text,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useQueries } from "@/hooks/useQueries ";
@@ -18,13 +19,21 @@ import { useQueries } from "@/hooks/useQueries ";
 const LayoutComponent = dynamic(() => import("/Layout"));
 
 export default function Notes() {
+  const toast = useToast();
   const router = useRouter();
   const { data: listNotes, setData, deleteItem } = useQueries({ prefixUrl: "https://service.pace-unv.cloud/api/notes" });
 
   const handleDelete = async (id) => {
     try {
       await deleteItem(id);
-      window.alert("Note deleted successfully!");
+      toast({
+        title: "Note deleted.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position:"top"
+      });
+      router.push("/note");
     } catch (error) {
       console.error("Failed to delete the note:", error);
     }

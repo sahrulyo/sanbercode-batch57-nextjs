@@ -1,20 +1,21 @@
+import { headers } from "../next.config.mjs"
 import { useCallback, useEffect, useState } from "react";
 
-export const useQueries = ({ prefixUrl = "" } = {}) => {
+export const useQueries = ({ prefixUrl = "", headers = {}} = {}) => {
   const [data, setData] = useState({
     data: [],
     isLoading: true,
     isError: false,
   });
 
-  const fetchingData = useCallback(async ({ url = "", method = "GET" } = {}) => {
+  const fetchingData = useCallback(async ({ url = "", method = "GET", headers = {} } = {}) => {
     setData((prevState) => ({
       ...prevState,
       isLoading: true,
       isError: false,
     }));
     try {
-      const response = await fetch(url, { method });
+      const response = await fetch(url, { method, headers});
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -55,7 +56,7 @@ export const useQueries = ({ prefixUrl = "" } = {}) => {
 
   useEffect(() => {
     if (prefixUrl) {
-      fetchingData({ url: prefixUrl });
+      fetchingData({ url: prefixUrl, headers: headers });
     }
   }, [prefixUrl, fetchingData]);
 
